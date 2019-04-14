@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="col-md-3">
+    <span class="naglow">Wprowadź współrzędne punktu</span><br><br>
+    <label class="title">Położenie x
+      <input #longitude class="form-control" required/>
+    </label><br><br>
+    <label class="title">Położenie y
+      <input #latitude class="form-control" />
+    </label>
+<br><br>
+    <label for="selectedScheme" class="col-form-label">Wybierz schemat</label>
+  <select [(ngModel)]="selectedScheme" class="form-control">
+    <option [ngValue]="scheme" *ngFor="let scheme of schemes">{{scheme.schemeNumber|schemeName}}</option>
+  </select><br>
+  <button (click)= "calculateIndividualSpotsInfluencesAtPoint(selectedScheme,longitude.value,latitude.value)" class="btn pad btn-primary pad">Oblicz wpływ dla punktu</button>
+</div>
+<div style="margin-left: 150px;" class="col-md-5" [hidden] = "!influenceCalculated">
+    <span class="naglow">Zanieczyszczenie w punkcie ({{longitude.value}}, {{latitude.value}})</span><br><br>
+  <table class="table">
+    <tr>
+      <th>Emitor</th>
+      <th>Wpływ</th>
+    </tr>
+    <tr *ngFor="let inf of spotsInfluence" [class.danger]="inf[1]>2" [class.warning]="inf[1]<=2">
+      <td>{{inf[0].name}}</td>
+      <td>{{inf[1]|powerPoints}}</td>
+      <tr>
+          <th>Całkowity wpływ w punkcie</th>
+          <th>300</th>
+        </tr>
+
+  </table>
+</div>
+</div>

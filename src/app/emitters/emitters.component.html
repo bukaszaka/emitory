@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="col-md-4">
+    <span class="naglow">Nowy emitor</span>
+    <br><br>
+    <label class="col-form-label">Nazwa
+      <input #emitterName class="form-control" />
+      <label class="description" for ="emitterName">hej hej e</label>
+    </label><br><br>
+    <label class="title">Wysokość
+      <input class="form-control" #emitterHeight />
+    </label><br><br>
+    <label class="title">Moc
+      <input #emitterPower class="form-control" />
+    </label><br><br>
+    <label class="title">Ikona:  
+      <select #selectedIcon class="form-control">
+        <option [value]="IconType.Circle">{{IconType.Circle}}</option>
+        <option [value]="IconType.Square">{{IconType.Square}}</option>
+        <option [value]="IconType.Triangle">{{IconType.Triangle}}</option>
+        <option [value]="IconType.Rectangle">{{IconType.Rectangle}}</option>
+      </select>
+    </label><br><br>
+    <button class="btn pad btn-primary pad" (click)="add(emitterName.value, emitterHeight.value, emitterPower.value, selectedIcon.value)">Dodaj</button>
+  </div>
+  <div class="col-md-6">
+      <span class="naglow">Lista emitorów</span><br><br>
+      <table class="table table-condensed">
+    <tr>
+      <th>Nazwa</th>
+      <th>Wysokość</th>
+      <th>Moc</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let emitter of emitters">
+      <td>{{emitter.name}}</td>
+      <td>{{emitter.height}}</td>
+      <td>{{emitter.power}}</td>
+      <td><button class="btn pad btn-primary" (click)=delete(emitter)>Usuń</button></td>
+    </tr>
+    </table>
+  </div>
+</div>

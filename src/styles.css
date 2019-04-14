@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+.naglow {
+  font-size: 18px;
+  line-height: 20px
+}
+
+.pad {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  margin-right: 8px
+}
+
+.description{
+  font-style: italic;
+  font-size: 13px;
+  font-weight: lighter;
+}

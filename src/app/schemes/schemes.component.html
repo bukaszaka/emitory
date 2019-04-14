@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="col-md-4">
+    <span class="naglow">Nowy schemat</span>
+    <br><br>
+    <label for="selectedEmitter" class="col-form-label">Emitor:
+      <select #selectedEmitter class="form-control">
+        <option [value]="emitter.id" *ngFor="let emitter of emitters">{{emitter.name}}</option>
+      </select>
+    </label><br><br>
+    <label class="title">Położenie x
+      <input #longitude class="form-control" required/>
+    </label><br><br>
+    <label class="title">Położenie y
+      <input #latitude class="form-control" />
+    </label><br><br>
+    <button class="btn pad btn-primary"
+      (click)="addSpot(selectedEmitter.value, longitude.value, latitude.value); longitude.value = '';latitude.value = ''">Dodaj
+      emitor</button>
+    <button class="btn pad btn-primary" (click)="add()">Zapisz schemat</button>
+    <table class="table table-condensed">
+      <tr>
+        <th>Emitor</th>
+        <th>Położenie</th>
+      </tr>
+      <tr *ngFor="let spot of emitterSpots">
+        <td>{{spot.emitter.name}}</td>
+        <td>({{spot.longitude}},{{spot.latitude}})</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <ul class="list-group" *ngFor="let scheme of schemes">
+      <li class="list-group-item">
+        <table class="table table-condensed">
+          <caption>{{scheme.schemeNumber|schemeName}}<button (click)="delete(scheme)"class="btn btn-primary left">Usuń schemat</button></caption>
+          <tr>
+            <th>Emitor</th>
+            <th>Położenie</th>
+          </tr>
+          <tr *ngFor="let spot of scheme.emitterSpots">
+            <td>{{spot.emitter.name}}</td>
+            <td>({{spot.longitude}},{{spot.latitude}})</td>
+          </tr>
+        </table>
+      </li>
+
+    </ul>
+  </div>
+</div>
